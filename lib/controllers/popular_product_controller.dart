@@ -5,6 +5,8 @@ import 'package:food_delivery/utils/colors.dart';
 import 'package:get/get.dart';
 import 'package:food_delivery/models/products_model.dart';
 
+import '../models/cart_model.dart';
+
 class PopularProductController extends GetxController{
    final PopularProductRepo popularProductRepo;
    PopularProductController({required this.popularProductRepo});
@@ -45,10 +47,11 @@ class PopularProductController extends GetxController{
   
   void setQuantity(bool isIncrement){
     if(isIncrement){
-      print("increment" + _quantity.toString());
+      
       _quantity = checkQuantity(_quantity+1);
+      print("number of items"+_quantity.toString());
     }else{
-      print("decrement");
+       print("number of items"+_quantity.toString());
       _quantity=  checkQuantity(_quantity-1);
 
     }
@@ -60,6 +63,11 @@ class PopularProductController extends GetxController{
       backgroundColor: AppColors.mainColor,
       colorText: Colors.white
       );
+      if(_inCartItems>0){
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
+      
       return 0;
     }else if((_inCartItems + quantity)>20){
       Get.snackbar("Item Count", "You can't add more !",
@@ -95,7 +103,7 @@ class PopularProductController extends GetxController{
 
 
   void addItem(ProductModel product){
-    // if(_quantity>0){
+    
         _cart.addItem(product, _quantity);
         _quantity=0;
         _inCartItems = _cart.getQuantity(product);
@@ -103,15 +111,23 @@ class PopularProductController extends GetxController{
           print("This id is "+value.id.toString()+" The quantity is "+value.quantity.toString());
         });
 
-    // }else{
-    //   Get.snackbar("Item count", "You can't add an empty product",
-    //   backgroundColor: AppColors.mainColor,
-    //   colorText: Colors.white
+
       
-    //  );
-   // }
+
+   update();
 
   }
 
+
+
+
+   int get totalItem{
+    return _cart.totalItems;
+   }
+
    
+   List<CartModel> get getItems{
+    return _cart.getItems;
+   }
+
 }
