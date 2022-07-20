@@ -3,7 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:food_delivery/pages/home/home_page.dart';
+import 'package:food_delivery/routes/route_helper.dart';
 import 'package:food_delivery/utils/dimension.dart';
+import 'package:get/get.dart';
+
+import '../../controllers/popular_product_controller.dart';
+import '../../controllers/recommended_product_controller.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -17,10 +22,17 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
 
   late AnimationController controller;
 
+  Future<void> _loadResource()async{
+       await Get.find<PopularProductController>().getPopularProductList();
+    // ignore: avoid_single_cascade_in_expression_statements
+       await Get.find<RecommendedProductController>().getRecommendedProductList();
+
+  }
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _loadResource();
     controller = new AnimationController(
       vsync: this,
       duration: const Duration(seconds: 5))..forward();
@@ -37,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
       // moves to the next actions
       Timer(
       const Duration(seconds: 10),
-       ()=>Navigator.pushReplacementNamed(context, HomePage.routeName)
+       ()=>Get.offNamed(RouteHelper.getInitial())
        );
       
   }

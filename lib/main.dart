@@ -44,20 +44,22 @@ class MyApp extends StatelessWidget {
   @override
 
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList();
-    // ignore: avoid_single_cascade_in_expression_statements
-    Get.find<RecommendedProductController>().getRecommendedProductList();
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+
+    return GetBuilder<PopularProductController>(builder:(_){
+          return GetBuilder<RecommendedProductController>(builder: (_){
+              
+
+            return GetMaterialApp(
+               debugShowCheckedModeBanner: false,
+               title: 'Flutter Demo',
 
       // home:HomePage(),
       // home:SplashScreen(),
 
 
-      home: MainFoodPage(),
-      initialRoute: RouteHelper.initial,
-      getPages: RouteHelper.routes,
+      //home: MainFoodPage(),
+               initialRoute: RouteHelper.getSplashPage(),
+               getPages: RouteHelper.routes,
 
 
 
@@ -65,6 +67,8 @@ class MyApp extends StatelessWidget {
       //   HomePage.routeName: (ctx)=>HomePage(),
       // },
     );
+          });
+    });
   }
 }
 
