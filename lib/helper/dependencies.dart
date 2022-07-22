@@ -14,7 +14,7 @@ Future<void> init()async{
   final sharedPreferences = await SharedPreferences.getInstance();
   
 
-   Get.lazyPut(() => sharedPreferences);
+  Get.lazyPut(() => sharedPreferences);
   //api client
   Get.lazyPut(()=>ApiClient(appBaseUrl:AppConstants.BASE_URL));
 
@@ -30,4 +30,4 @@ Future<void> init()async{
   Get.lazyPut(() =>CartController(cartRepo: Get.find()));  
 
 
-}
+} 

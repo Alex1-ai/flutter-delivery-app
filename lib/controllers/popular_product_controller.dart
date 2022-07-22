@@ -91,7 +91,7 @@ class PopularProductController extends GetxController{
     _cart=cart;
     var exist=false;
     exist = _cart.existInCart(product);
-    print("exist or not "+exist.toString());
+    //print("exist or not "+exist.toString());
     if(exist){
       _inCartItems=_cart.getQuantity(product);
       
@@ -130,4 +130,4 @@ class PopularProductController extends GetxController{
     return _cart.getItems;
    }
 
-}
+} 
