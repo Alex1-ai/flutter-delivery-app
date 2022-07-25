@@ -59,7 +59,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                       children: [
                          GestureDetector(
                             onTap: (){
-                              if(controller.totalItem>=1)Get.toNamed(RouteHelper.getCartPage());
+                              // if(controller.totalItem>=1)Get.toNamed(RouteHelper.getCartPage());
+                              Get.toNamed(RouteHelper.getCartPage());
                             },
                         child: AppIcon(icon: Icons.shopping_cart_outlined),
                          ),
