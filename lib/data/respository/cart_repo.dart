@@ -117,6 +117,13 @@ class CartRepo{
     
  
   }
+
+
+  void clearCartHistory(){
+    removeCart();
+    cartHistory = [];
+    sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+  }
   
     
 }

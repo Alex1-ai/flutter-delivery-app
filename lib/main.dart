@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:food_delivery/controllers/cart_controller.dart';
 import 'package:food_delivery/controllers/popular_product_controller.dart';
 import 'package:food_delivery/controllers/recommended_product_controller.dart';
+import 'package:food_delivery/pages/Auth/sign_in_page.dart';
+import 'package:food_delivery/pages/Auth/sign_up_page.dart';
 import 'package:food_delivery/pages/cart/cart_page.dart';
 import 'package:food_delivery/pages/food/popular_food_detail.dart';
 import 'package:food_delivery/pages/food/recommended_food_detial.dart';
@@ -50,12 +52,13 @@ class MyApp extends StatelessWidget {
           return GetBuilder<RecommendedProductController>(builder: (_){
               
 
-            return GetMaterialApp(
+            return  GetMaterialApp(
                debugShowCheckedModeBanner: false,
                title: 'Flutter Demo',
 
       // home:HomePage(),
-      // home:SplashScreen(),
+     //home:SplashScreen(),
+     //home: SignInPage()
 
 
       //home: MainFoodPage(),
